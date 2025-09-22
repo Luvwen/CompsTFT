@@ -3,7 +3,19 @@ package com.developer.compsTFT.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
-
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(
+                name = "insertUnitsDb",
+                procedureName = "insert_units",
+                resultClasses = {Unit.class},
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "characterPath", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "characterId", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "rarity", type = Integer.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "displayName", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "iconPath", type = String.class)
+                })
+})
 @Entity(name = "Unit")
 @Table(name = "units")
 public @Data class Unit {
